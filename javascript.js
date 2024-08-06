@@ -18,10 +18,14 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, compterChoice) {
-    humanChoice = humanChoice.toLowerCase()
     let result = ""
+
+    humanChoice = humanChoice.toLowerCase()
+    console.log(`You picked ${humanChoice}`)
+    console.log(`The computer picked ${compterChoice}`)
+
     if (humanChoice === compterChoice) {
-        result = "It's a tie"
+        result = "It's a tie!"
     } else if (humanChoice === "rock") {
         if (compterChoice === "scissors") {
             result = "you Win! Rock beats scissors"
@@ -42,19 +46,26 @@ function playRound(humanChoice, compterChoice) {
             result = "You win! Scissors beats Paper"
             humanChoice ++
         } else {
-            result = "you lose! Rock beats scissors"
+            result = "you lose! Rock beats Scissors"
             compterChoice ++
         }
     }
     console.log(result)
 }
 
-const humanChoice = getHumanChoice()
-const compterChoice = getComputerChoice()
+function playGame() {
+    for (let i = 1; i <= 5; i++) {
+        console.log(`Round ${i}`)
+        const humanChoice = getHumanChoice()
+        const compterChoice = getComputerChoice()
+        playRound(humanChoice, compterChoice)
+
+        console.log(`Player Score = ${humanScore}`)
+        console.log(`Computer Score = ${computerScore}`)
+    }
+        
+}
+
+playGame()
 
 
-
-console.log(`You picked ${humanChoice}`)
-console.log(`The computer picked ${compterChoice}`)
-
-playRound(humanChoice, compterChoice)
