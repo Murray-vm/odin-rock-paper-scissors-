@@ -2,6 +2,8 @@
 let humanScore = 0
 let computerScore = 0
 
+const resultDiv = document.querySelector("#results")
+
 function getComputerChoice() {
     let randomInt = Math.floor(Math.random() * 3)
     if (randomInt === 0) {
@@ -19,9 +21,6 @@ function getHumanChoice() {
 
 function playRound(humanChoice, compterChoice) {
     let result = ""
-
-    console.log("humanChoice")
-    console.log(humanChoice)
 
     humanChoice = humanChoice.toLowerCase()
     console.log(`You picked ${humanChoice}`)
@@ -41,19 +40,28 @@ function playRound(humanChoice, compterChoice) {
         if (compterChoice === "rock")
         {
             result = "You win! Paper beats Rock"
+            humanScore ++
         } else {
             result = "you lose! Scissors beats Rock"
+            computerScore ++
         } 
     } else if (humanChoice === "scissors") {
         if (compterChoice === "paper") {
             result = "You win! Scissors beats Paper"
-            humanChoice ++
+            humanScore ++
         } else {
             result = "you lose! Rock beats Scissors"
-            compterChoice ++
+            computerScore ++
         }
     }
-    console.log(result)
+    if (computerScore === 5) {
+        result += " Game over, computer wins"
+    }
+    if (humanScore === 5) {
+        result += " Game over, you win"
+    }
+
+    resultDiv.textContent = result + ` Player: ${humanScore} Computer: ${computerScore}`
 }
 
 const buttons = document.querySelectorAll("button")
