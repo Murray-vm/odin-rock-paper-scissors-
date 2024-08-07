@@ -20,6 +20,9 @@ function getHumanChoice() {
 function playRound(humanChoice, compterChoice) {
     let result = ""
 
+    console.log("humanChoice")
+    console.log(humanChoice)
+
     humanChoice = humanChoice.toLowerCase()
     console.log(`You picked ${humanChoice}`)
     console.log(`The computer picked ${compterChoice}`)
@@ -53,19 +56,13 @@ function playRound(humanChoice, compterChoice) {
     console.log(result)
 }
 
-function playGame() {
-    for (let i = 1; i <= 5; i++) {
-        console.log(`Round ${i}`)
-        const humanChoice = getHumanChoice()
-        const compterChoice = getComputerChoice()
-        playRound(humanChoice, compterChoice)
+const buttons = document.querySelectorAll("button")
 
-        console.log(`Player Score = ${humanScore}`)
-        console.log(`Computer Score = ${computerScore}`)
-    }
-        
-}
+buttons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        playRound(getComputerChoice(), e.target.value)
+    })
+});
 
-playGame()
 
 
